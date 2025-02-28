@@ -1,16 +1,20 @@
+import React from 'react';
 import { useDispatch } from 'react-redux';
-import { reservarEspacio } from '../redux/parqueoSlice';
 
-const Espacio = ({ zona, index, ocupado }) => {
+const Espacio = ({ espacio }) => {
   const dispatch = useDispatch();
+
+  const reservarEspacio = () => {
+    dispatch({ type: 'RESERVAR_ESPACIO', payload: { id: espacio.id } });
+  };
 
   return (
     <button
-      className={`m-2 btn ${ocupado ? 'btn-danger' : 'btn-success'}`}
-      onClick={() => dispatch(reservarEspacio({ zona, index }))}
-      disabled={ocupado}
+      className={`espacio ${espacio.ocupado ? 'ocupado' : 'disponible'}`}
+      onClick={reservarEspacio}
+      disabled={espacio.ocupado}
     >
-      {index + 1}
+      {espacio.id}
     </button>
   );
 };

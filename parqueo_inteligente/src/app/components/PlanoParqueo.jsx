@@ -1,14 +1,18 @@
+import React from 'react';
 import Espacio from './Espacio';
 import { useSelector } from 'react-redux';
 
-const PlanoParqueo = ({ zona }) => {
-  const espacios = useSelector((state) => state.parqueo.zonas[zona]);
+const PlanoParqueo = () => {
+  const espacios = useSelector(state => state.espacios.espacios);
+  const zonaSeleccionada = useSelector(state => state.zonas.zonaSeleccionada);
 
   return (
-    <div className="d-flex flex-wrap">
-      {espacios.map((ocupado, index) => (
-        <Espacio key={index} zona={zona} index={index} ocupado={ocupado} />
-      ))}
+    <div className="plano-parqueo">
+      {espacios
+        .filter(espacio => espacio.zona === zonaSeleccionada)
+        .map(espacio => (
+          <Espacio key={espacio.id} espacio={espacio} />
+        ))}
     </div>
   );
 };

@@ -1,12 +1,18 @@
+import React from 'react';
 import { useSelector } from 'react-redux';
 
 const ResumenReserva = () => {
-  const reserva = useSelector((state) => state.parqueo.reserva);
+  const espacios = useSelector(state => state.espacios.espacios);
+  const espacioReservado = espacios.find(espacio => espacio.ocupado);
 
   return (
-    <div className="alert alert-info">
-      {reserva.espacio !== null ? (
-        <p>Reserva en zona {reserva.zona}, espacio {reserva.espacio + 1}</p>
+    <div className="resumen-reserva">
+      {espacioReservado ? (
+        <div>
+          <h3>Resumen de Reserva</h3>
+          <p>Espacio: {espacioReservado.id}</p>
+          <p>Zona: {espacioReservado.zona}</p>
+        </div>
       ) : (
         <p>No hay reservas activas.</p>
       )}

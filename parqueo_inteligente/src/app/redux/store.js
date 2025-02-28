@@ -1,8 +1,12 @@
-import { configureStore } from '@reduxjs/toolkit';
-import parqueoReducer from './parqueoSlice';
+import { createStore, combineReducers } from 'redux';
+import espaciosReducer from './reducers/espaciosReducer';
+import zonasReducer from './reducers/zonasReducer';
 
-export const store = configureStore({
-  reducer: {
-    parqueo: parqueoReducer,
-  },
+const rootReducer = combineReducers({
+  espacios: espaciosReducer,
+  zonas: zonasReducer,
 });
+
+const store = createStore(rootReducer);
+
+export default store;

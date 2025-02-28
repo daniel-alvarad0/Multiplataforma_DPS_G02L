@@ -1,17 +1,26 @@
-import { useState } from 'react';
-import PlanoParqueo from './PlanoParqueo';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 const SelectorZona = () => {
-  const [zona, setZona] = useState('Cubierto');
+  const dispatch = useDispatch();
+  const zonas = useSelector(state => state.zonas.zonas);
+  const zonaSeleccionada = useSelector(state => state.zonas.zonaSeleccionada);
+
+  const seleccionarZona = (zona) => {
+    dispatch({ type: 'SELECCIONAR_ZONA', payload: zona });
+  };
 
   return (
-    <div>
-      <select className="form-select my-3" onChange={(e) => setZona(e.target.value)}>
-        <option value="Cubierto">Cubierto</option>
-        <option value="Descubierto">Descubierto</option>
-        <option value="VIP">VIP</option>
-      </select>
-      <PlanoParqueo zona={zona} />
+    <div className="selector-zona">
+      {zonas.map(zona => (
+        <button
+          key={zona}
+          className={`zona ${zona === zonaSeleccionada ? 'seleccionada' : ''}`}
+          onClick={() => seleccionarZona(zona)}
+        >
+          {zona}
+        </button>
+      ))}
     </div>
   );
 };
