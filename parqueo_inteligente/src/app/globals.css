@@ -6,13 +6,11 @@
   transition: all 0.3s ease;
 }
 
-/* Efecto de escala al pasar el mouse sobre elementos disponibles */
 .hover-scale:hover {
   transform: scale(1.05);
   box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
 }
 
-/* Mesas ocupadas más apagadas visualmente */
 .opacity-75 {
   opacity: 0.75;
 }

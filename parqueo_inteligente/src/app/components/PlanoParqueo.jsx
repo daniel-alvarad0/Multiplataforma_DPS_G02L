@@ -1,20 +1,23 @@
 import React from 'react';
 import Espacio from './Espacio';
-import { useSelector } from 'react-redux';
 
-const PlanoParqueo = () => {
-  const espacios = useSelector(state => state.espacios.espacios);
-  const zonaSeleccionada = useSelector(state => state.zonas.zonaSeleccionada);
-
+function PlanoParqueo({ espacios, reservarEspacio }) {
   return (
-    <div className="plano-parqueo">
-      {espacios
-        .filter(espacio => espacio.zona === zonaSeleccionada)
-        .map(espacio => (
-          <Espacio key={espacio.id} espacio={espacio} />
-        ))}
+    <div className="row justify-content-center my-5">
+      {espacios.map(
+        (
+          espacio
+        ) => (
+          <Espacio
+            key={espacio.id}
+            id={espacio.id}
+            disponible={espacio.disponible}
+            reservarEspacio={reservarEspacio}
+          />
+        )
+      )}
     </div>
   );
-};
+}
 
 export default PlanoParqueo;

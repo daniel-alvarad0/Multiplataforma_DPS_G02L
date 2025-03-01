@@ -1,9 +1,23 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 
-const ResumenReserva = () => {
-  const espacios = useSelector(state => state.espacios.espacios);
-  const espacioReservado = espacios.find(espacio => espacio.ocupado);
+function ResumenReserva({ reserva }) {
+  let contenido;
+  if (reserva) {
+    contenido = (
+      <div className="card bg-dark text-white p-4 shadow animate__animated animate__fadeIn">
+        <p>
+          <strong>Espacio:</strong> {`Espacio ${reserva.espacio}`}
+        </p>
+        <p>
+          <strong>Zona:</strong> {`Zona ${reserva.zona}`}
+        </p>
+      </div> 
+    );
+  } else {
+    contenido = (
+      <p className="text-muted">Aún no has reservado ningun espacio de estacionamiento.</p>
+    );
+  }
 
   return (
     <div className="resumen-reserva">
@@ -18,6 +32,6 @@ const ResumenReserva = () => {
       )}
     </div>
   );
-};
+}
 
 export default ResumenReserva;

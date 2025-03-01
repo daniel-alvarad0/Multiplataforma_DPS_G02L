@@ -1,5 +1,4 @@
 "use client";
-// Importamos todos los componentes creados en la carpeta components
 import React, { useState } from "react";
 import PlanoParqueo from "./components/PlanoParqueo";
 import ResumenReserva from "./components/ResumenReserva";
@@ -11,7 +10,7 @@ function App() {
   const [vehiculo, setVehiculo] = useState("Automóvil");
   const [mensaje, setMensaje] = useState("");
 
-  // Declaración de los espacios de estacionamiento con información básica
+  // Declaración de los espacios de estacionamiento
   const [espaciosPorZona, setEspaciosPorZona] = useState({
     "Zona A": [
       { id: 1, disponible: true, tipo: "Automóvil" },
@@ -29,7 +28,6 @@ function App() {
     ],
   });
 
-  // Función para la selección de espacios
   const reservarEspacio = (espacioId) => {
     const espacio = espaciosPorZona[zona].find((e) => e.id === espacioId);
     if (!espacio.disponible) {
@@ -48,7 +46,6 @@ function App() {
     setMensaje(`¡Espacio ${espacioId} reservado con éxito para tu ${vehiculo}!`);
     setTimeout(() => setMensaje(""), 3000);
 
-    // Actualizar la disponibilidad del espacio
     setEspaciosPorZona((prevEspaciosPorZona) => ({
       ...prevEspaciosPorZona,
       [zona]: prevEspaciosPorZona[zona].map((e) =>

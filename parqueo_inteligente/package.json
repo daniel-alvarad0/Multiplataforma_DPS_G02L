@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.6.0",
+    "animate.css": "^4.1.1",
     "bootstrap": "^5.3.3",
     "next": "15.2.0",
     "react": "^19.0.0",

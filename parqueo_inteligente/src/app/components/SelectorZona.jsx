@@ -1,28 +1,33 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from "react";
 
-const SelectorZona = () => {
-  const dispatch = useDispatch();
-  const zonas = useSelector(state => state.zonas.zonas);
-  const zonaSeleccionada = useSelector(state => state.zonas.zonaSeleccionada);
-
-  const seleccionarZona = (zona) => {
-    dispatch({ type: 'SELECCIONAR_ZONA', payload: zona });
-  };
+function SelectorZona({ zona, setZona }) {
+  const zonas = ["Zona A", "Zona B", "Zona C"];
 
   return (
-    <div className="selector-zona">
-      {zonas.map(zona => (
-        <button
-          key={zona}
-          className={`zona ${zona === zonaSeleccionada ? 'seleccionada' : ''}`}
-          onClick={() => seleccionarZona(zona)}
-        >
-          {zona}
-        </button>
-      ))}
+    <div className="my-5 text-center">
+      <h4 className="mb-3">Elige una zona</h4>
+      <div className="btn-group">
+        {zonas.map((z) => {
+          let buttonClass = "btn btn-lg transition-all ";
+          if (zona === z) {
+            buttonClass += "btn-outline-light shadow";
+          } else {
+            buttonClass += "btn-dark hover-scale";
+          }
+
+          return (
+            <button
+              key={z}
+              className={buttonClass}
+              onClick={() => setZona(z)}
+            >
+              {z}
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
-};
+}
 
 export default SelectorZona;
