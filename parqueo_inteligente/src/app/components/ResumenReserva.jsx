@@ -20,16 +20,9 @@ function ResumenReserva({ reserva }) {
   }
 
   return (
-    <div className="resumen-reserva">
-      {espacioReservado ? (
-        <div>
-          <h3>Resumen de Reserva</h3>
-          <p>Espacio: {espacioReservado.id}</p>
-          <p>Zona: {espacioReservado.zona}</p>
-        </div>
-      ) : (
-        <p>No hay reservas activas.</p>
-      )}
+    <div className="my-5 w-75 mx-auto text-center">
+      <h2 className="mb-3">Resumen de tu reserva</h2>
+      {contenido}
     </div>
   );
 }
