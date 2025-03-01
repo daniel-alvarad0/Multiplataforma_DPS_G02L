@@ -57,7 +57,7 @@ function App() {
   return (
     <div className="d-flex flex-column min-vh-100 bg-dark text-white">
       <header className="text-center py-4">
-        <h1>Reserva de Estacionamiento</h1>
+        <h1>Reserva tu Estacionamiento</h1>
       </header>
       <main className="flex-grow-1 d-flex flex-column justify-content-center align-items-center p-4">
         <div className="w-100" style={{ maxWidth: "900px" }}>
@@ -70,7 +70,7 @@ function App() {
               id="vehiculo"
               value={vehiculo}
               onChange={(e) => setVehiculo(e.target.value)}
-              className="form-control w-auto bg-secondary text-dark border-0 shadow-sm transition-all"
+              className="form-control w-auto bg-secondary text-dark border-5 shadow-sm transition-all"
             >
               <option value="Automóvil">Automóvil</option>
               <option value="Motocicleta">Motocicleta</option>
