@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button } from 'react-native';
+import { View, TextInput, Button, StyleSheet, Text } from 'react-native';
 import { db, auth } from '../utils/firebaseConfig';
 import { addDoc, collection } from 'firebase/firestore';
 
@@ -21,12 +21,62 @@ export default function AddEventScreen({ navigation }) {
   };
 
   return (
-    <View>
-      <TextInput placeholder="Título" value={title} onChangeText={setTitle} />
-      <TextInput placeholder="Categoría" value={category} onChangeText={setCategory} />
-      <TextInput placeholder="Participantes" value={participants} onChangeText={setParticipants} />
-      <TextInput placeholder="Fecha y hora" value={datetime} onChangeText={setDatetime} />
-      <Button title="Guardar evento" onPress={handleAdd} />
+    <View style={styles.container}>
+      <Text style={styles.label}>Título</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Título"
+        placeholderTextColor="#888"
+        value={title}
+        onChangeText={setTitle}
+      />
+      <Text style={styles.label}>Categoría</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Categoría"
+        placeholderTextColor="#888"
+        value={category}
+        onChangeText={setCategory}
+      />
+      <Text style={styles.label}>Participantes</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Participantes"
+        placeholderTextColor="#888"
+        value={participants}
+        onChangeText={setParticipants}
+      />
+      <Text style={styles.label}>Fecha y hora</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Fecha y hora"
+        placeholderTextColor="#888"
+        value={datetime}
+        onChangeText={setDatetime}
+      />
+      <Button title="Guardar evento" onPress={handleAdd} color="#007BFF" />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#121212',
+    padding: 20,
+  },
+  label: {
+    color: '#FFFFFF',
+    fontSize: 16,
+    marginBottom: 5,
+  },
+  input: {
+    backgroundColor: '#1E1E1E',
+    color: '#FFFFFF',
+    padding: 10,
+    borderRadius: 5,
+    marginBottom: 15,
+    borderWidth: 1,
+    borderColor: '#333',
+  },
+});

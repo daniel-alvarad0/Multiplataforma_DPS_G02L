@@ -1,23 +1,49 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-import dayjs from 'dayjs';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 export default function EventCard({ event, onPress }) {
-  const eventDate = new Date(event.datetime);
-  const now = new Date();
-
-  const getColor = () => {
-    if (eventDate.toDateString() === now.toDateString()) return 'green';
-    if (eventDate < now) return 'red';
-    return 'blue';
-  };
-
   return (
-    <TouchableOpacity onPress={onPress}>
-      <View style={{ backgroundColor: getColor(), margin: 10, padding: 10, borderRadius: 8 }}>
-        <Text style={{ fontWeight: 'bold' }}>{event.title}</Text>
-        <Text>{event.category} - {dayjs(event.datetime).format('DD/MM/YYYY HH:mm')}</Text>
-      </View>
+    <TouchableOpacity onPress={onPress} style={styles.card}>
+      <Text style={styles.title}>{event.title}</Text>
+      <Text style={styles.category}>{event.category}</Text>
+      <Text style={styles.datetime}>{new Date(event.datetime).toLocaleString()}</Text>
+      <Text style={styles.participants}>Participantes: {event.participants}</Text>
     </TouchableOpacity>
   );
 }
+
+const styles = StyleSheet.create({
+  card: {
+    backgroundColor: '#1E1E1E',
+    padding: 15,
+    borderRadius: 10,
+    marginBottom: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 3,
+    elevation: 5,
+    borderWidth: 1,
+    borderColor: '#333',
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#FFFFFF',
+    marginBottom: 5,
+  },
+  category: {
+    fontSize: 14,
+    color: '#AAAAAA',
+    marginBottom: 5,
+  },
+  datetime: {
+    fontSize: 14,
+    color: '#CCCCCC',
+    marginBottom: 5,
+  },
+  participants: {
+    fontSize: 14,
+    color: '#888888',
+  },
+});
