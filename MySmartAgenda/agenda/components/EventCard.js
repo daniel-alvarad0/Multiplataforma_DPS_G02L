@@ -2,8 +2,22 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 export default function EventCard({ event, onPress }) {
+  const getCardStyle = () => {
+    const eventDate = new Date(event.datetime);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    if (eventDate < today) {
+      return styles.pastEvent; // Rojo: eventos pasados
+    } else if (eventDate.toDateString() === today.toDateString()) {
+      return styles.todayEvent; // Verde: eventos de hoy
+    } else {
+      return styles.futureEvent; // Azul: eventos futuros
+    }
+  };
+
   return (
-    <TouchableOpacity onPress={onPress} style={styles.card}>
+    <TouchableOpacity onPress={onPress} style={[styles.card, getCardStyle()]}>
       <Text style={styles.title}>{event.title}</Text>
       <Text style={styles.category}>{event.category}</Text>
       <Text style={styles.datetime}>{new Date(event.datetime).toLocaleString()}</Text>
@@ -14,7 +28,6 @@ export default function EventCard({ event, onPress }) {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: '#1E1E1E',
     padding: 15,
     borderRadius: 10,
     marginBottom: 10,
@@ -25,6 +38,15 @@ const styles = StyleSheet.create({
     elevation: 5,
     borderWidth: 1,
     borderColor: '#333',
+  },
+  pastEvent: {
+    backgroundColor: '#FF4D4D', // Rojo
+  },
+  todayEvent: {
+    backgroundColor: '#4CAF50', // Verde
+  },
+  futureEvent: {
+    backgroundColor: '#007BFF', // Azul
   },
   title: {
     fontSize: 18,
